@@ -4,6 +4,11 @@ import { Category } from "@/interfaces/category.interface";
 import { ref } from "vue";
 
 export const useAnalyzerStore = defineStore("product", () => {
+
+
+  // datos y operadores aceptados por el lenguaje
+
+
   const operadoresRelacionales = ["==", "!=", "<", ">", "<=", ">="];
   const operadoresLogicos = ["&&", "||", "!"];
   const palabrasReservadas = [
@@ -48,6 +53,8 @@ export const useAnalyzerStore = defineStore("product", () => {
 
   const operadoresAritmeticos = ["+", "-", "*", "/", "%"];
 
+
+
   const sourceCode = ref("");
   let listString: string | any[] = [];
 
@@ -67,6 +74,7 @@ export const useAnalyzerStore = defineStore("product", () => {
     }
   }
 
+  //me retorna una lista de las palabras capturadas, en el lenguaje se debe tener en cuenta los espacios, para asignar variables, etc
   function obtenerPalabras(cadena: string): string[] {
     return cadena.split(/\s+/).filter((palabra) => palabra.trim() !== "");
   }
@@ -111,7 +119,7 @@ export const useAnalyzerStore = defineStore("product", () => {
     if (token !== null) {
       return token;
     }
-    
+
     token = extraerPalabraReservada(indice);
     if (token !== null) {
       return token;
